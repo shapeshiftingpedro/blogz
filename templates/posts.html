@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
+<h2>The Posts List</h2>
 {% if posts|length > 0 %}
 <ul>
     {% for post in posts %}
-    <li><a href="./blog?id={{post.id}}"><h4>{{post.post_title}}</h4></a>
+    <li><h4><a href="./blog?id={{post.id}}">{{post.post_title}}</a></h4>
         <p>{{post.post_content}}</p>
+    <p>written by <a href="./blog?user={{post.owner_id}}">{{post.owner}}</a></p>
     </li>
     {% endfor %}
 </ul>
