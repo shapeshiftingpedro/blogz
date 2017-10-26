@@ -89,8 +89,12 @@ def login():
                 session["user"] = email
                 flash('Hello again!, ' + user.email)
                 return redirect("/")
-        flash('Bad username or password, please try again')
-        return redirect("/login")
+            else:
+                flash('Bad password, please try again')
+                return redirect("/login")
+        else:
+            flash("Bad username/user doesn't exist, please try again")
+            return redirect("/login")
     if request.method == 'GET':
         return render_template('user-login.html')
 
@@ -159,7 +163,7 @@ def index():
     return render_template('index.html', users = user_list)
 
 
-endpoints_without_login = ["login", "register" , "index"]
+endpoints_without_login = ["login", "register" , "index", "posts_list"]
 
 
 @app.before_request
